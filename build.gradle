@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.6.15'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'co.com.FacialRecognition'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+
+	//MySQL
+	implementation 'mysql:mysql-connector-java:8.0.28'
+
+	// Swagger
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.1.10'
+	implementation 'io.swagger.core.v3:swagger-models:2.1.10'
+
+	//OpenCV
+	implementation 'org.openpnp:opencv:4.9.0-0'
+
+
+
+
+}
+
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
